@@ -28,3 +28,38 @@ Idbinter ob = new InterfaceDemo(); //Idbinter is interface name and InterfaceDem
 ![alt text](image-21.png)
 
 
+
+# DELEGATES 
+
+- function pointers
+
+- is a method without any logic
+```cs
+public delegate void show();
+public void hello()
+{
+}
+show obj = hello
+```
+- this method can point to another method with same signature
+- if delegate is invoked the method is called
+- invoke function is inbuilt 
+```cs
+obj.invoke();
+```
+
+- calling this way makes application logic independent
+
+![alt text](image-22.png)
+
+![alt text](image-24.png)
+
+- if parameters needed , invoke must also contain parameters
+![alt text](<Screenshot 2024-07-08 154134.png>)
+
+- if only one line of code no need of methods
+![alt text](image-25.png)
+
+
+- even more easier using lambda expression 
+![alt text](image-26.png)
