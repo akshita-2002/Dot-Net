@@ -260,3 +260,112 @@ internal class ageexdemo{
 
 ```
 
+# STREAMS(FIle Handling)
+
+- Real Time Examples
+1. logging error
+2. serialization
+3. to store offline copy data
+
+-  import -> System.IO
+
+  classes -> 
+  1. FileStream (to create a file)
+  ```cs
+  FileStream fs = new FileStream("E:\\proclink\\hello.txt",FileMode.OpenorCreate, FileAccess.ReadWrite);
+  ```
+  2. FileInfo (information about file)
+  3. StreamReader (Content of the file)
+  ```cs
+  StreamReader sr = new StreamReader(fs);
+  string str = sr.ReadToEnd();
+  Console.WriteLine(str);
+
+
+  4. StreamWriter (Write content to file) 
+  ```cs
+  StreamWriter sw = new StreamWriter(fs);
+  sw.WriteLine("Helloooo");
+  sw.Close(); // if not closed others cannot access
+  fs.Dispose();
+  ```
+  5. BinaryWriter ( write content in binary format)
+  6. BinaryReader ( read data from binary file)
+  7. Directory ( create a folder)
+  
+  ```cs
+  Directory.CreateDirectory(C:\\Dot Net\\mydir);
+  ```
+
+  8. DirectoryInfo (get info about folder (name, no of files data/time , path))
+
+  ```cs
+  DirectoryInfo d = new Directory("C:\\Dot Net\\mydir");
+  Console.WriteLine(d.FullName);
+  Console.WriteLine(d.Parent);
+  Console.WriteLine(d.CreationTime);
+  ```
+
+# SERIALIZATION
+
+- is a process of converting an object to a stream / filesystem/network transferable
+
+- in simple converting object to a file
+- after sharing we have to deserialize 
+- Deserialize -> convert file to object
+
+- Types 
+1. Binary - data is stored in binary format( the file will be in binary)
+2. Soap - simple object access protocol -> protocol that carries data in xml.
+3. xml - data is stored in xml 
+4. json - data is stored in json
+
+- import -> System.Runtime.Serialization.Formatters.Binary;
+
+
+
+```cs
+public void SerializeDemo1()
+{
+     List<string> list = new List<string>()
+     {
+         "india","canada","swiz","us"
+     };
+ 
+     FileStream fs = new FileStream("E:\\proclink\\country.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite); //bin for binary , xml for soap
+ 
+     BinaryFormatter bf = new BinaryFormatter();
+ 
+     bf.Serialize(fs, list);
+     fs.Dispose();
+     Console.WriteLine( "created successfully");
+ 
+}
+ 
+ 
+public void deserialize()
+{
+     List<string> s = new List<string>();
+     FileStream fs = new FileStream("E:\\proclink\\country.bin", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+ 
+     BinaryFormatter bf = new BinaryFormatter();
+ 
+    s = (List<string>)  bf.Deserialize(fs);
+ 
+     foreach (var item in s)
+     {
+         Console.WriteLine(item );
+     }
+     fs.Dispose();
+ 
+}
+
+```
+
+
+- Uses of binary serialization 
+1. for transferring sensitive data
+2. only meant to communicate between same type of operating system.
+
+- soap serialization
+1. works on different platforms , languages
