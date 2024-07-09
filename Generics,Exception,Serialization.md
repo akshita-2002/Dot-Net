@@ -122,6 +122,7 @@ foreach(var item in s){
 ```
 
 
+
 #### STACK
 - LIFO - last items are shown first
 - Real Time Examples
@@ -149,3 +150,113 @@ Console.WriteLine(s.Peek()); //prints the top element
 - Real Time example
 1. Bank token 
 2. Reservation
+
+
+```cs
+Queue<string> s = new Queue<string>();
+s.Enqueue("Akshita"); //push
+s.Enqueue("Riya");
+Console.WriteLine(s.Count);
+COnsole.WriteLine(s.Peek()); // varun
+Console.WriteLine(s.Dequeue());
+
+foreach(item in s){
+    Console.WriteLine(item);
+}
+```
+
+
+#### CUSTOM CLASS/METHODS
+
+```cs
+public void swap<T>(T a, T b){
+    T c=a;
+    a=b;
+    b=c;
+    Console.WriteLine(a);
+    Console.WriteLine(b);
+}
+
+//in main
+Demo d1=new Demo();
+d1.swap<int>(30,56);
+d1.swap<string>("hi","welcome");
+```
+
+- generic class
+```cs
+internal class GenDemo<T>{
+
+}
+GenDemo<int> ob = new GenDemo();
+ob.swap(1,2);
+```
+
+
+# EXCEPTION HANDLING
+
+- to handle run time errors
+
+- Type of errors 
+1. Compile (won't run)
+2. Logic (compile succesfully , but output is not as expected)
+3. Run (compiles succesfully but doesn't run )
+  Eg: array Size (out of bound ), wrong data type given as input , file not found error, memory exception 
+
+- try and catch 
+
+![alt text](image-27.png)
+![alt text](image-28.png)
+
+DivideByZero is the exection name that occurs when divided by 0.
+
+![alt text](image-29.png)
+for exception if we enter other data type as input
+
+
+![alt text](image-30.png)
+instead of giving each exception, we can use exception as class 
+
+
+- finally always run whether there is a error or not
+- to close the resources
+```cs
+finally{
+    Console.WriteLine("finally block called");
+}
+```
+
+- if the limit exceeds for the data type it becomes zero.
+
+- checked => used to know error if any in data type
+![alt text](image-31.png)
+
+
+
+- Custom Exception 
+
+```cs
+class AgeException:applicationException //to use message class
+{
+    //constructor
+    public AgeException(string message) : base(message){
+
+    }
+}
+
+internal class ageexdemo{
+    public void display(){
+        try{
+            int i = int.Parse(Console.ReadLine());
+            if(i<18)
+              throw new AgeException("Min Age should be 18")
+        }
+        catch(AgeException ex)
+       {
+         Console.WriteLine(ex.Message);
+       }
+    }
+}
+
+```
+
