@@ -3,7 +3,7 @@
 
 - desktop ,ui , mobile , web app ,gaming applications
 
-- .NET -> Network enabled technology
+ - .NET -> Network enabled technology
 
 - platform from microsoft to build software applications
 

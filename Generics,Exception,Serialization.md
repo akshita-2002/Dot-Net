@@ -260,7 +260,7 @@ internal class ageexdemo{
 
 ```
 
-# STREAMS(FIle Handling)
+# STREAMS(File Handling)
 
 - Real Time Examples
 1. logging error
