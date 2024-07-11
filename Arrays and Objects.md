@@ -14,7 +14,7 @@ public static void methodname(){
 ![alt text](image-4.png)
 
 
-- Optional parameter -> we can pass default parameters if the user does'nt give input.
+- Optional parameter -> we can pass default values to parameters if the user does'nt give input.
 - if we want to only pass value to one varaible - Named parameter
 ![alt text](image-5.png)
 
@@ -176,7 +176,7 @@ employee newObj = new employee()
 
 ![alt text](image-15.png)
 
-- the variables whoch are used again and again use static for them
+- the variables which are used again and again use static for them
 
 ![alt text](image-12.png)
 
