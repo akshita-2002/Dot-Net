@@ -51,4 +51,31 @@ FileGrowth -> when the size is full , it increases by 20%
 - alter the database
 ![alt text](image-36.png)
 
+- we can run sql in command prompt
+![alt text](image-37.png)
 
+   -  -E -> to use windows authentication
+   - -S -> server name
+   - -d -> databse name
+
+
+# TYPES OF QUERIES
+
+- dml => data manipulation language (insert , update, delete)
+
+- ddl : data defination language (create, drop , alter)
+
+- tcl : transaction control lang (commit , rollback)
+
+- dql : data query lang (select)
+
+- dcl : data control lang (grant , revoke)
+
+
+- unique identifier -> unique for entire sql
+
+
+# DATA TYPES 
+- binary -> data is encrypted 
+
+![alt text](image-38.png)
