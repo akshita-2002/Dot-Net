@@ -79,3 +79,62 @@ FileGrowth -> when the size is full , it increases by 20%
 - binary -> data is encrypted 
 
 ![alt text](image-38.png)
+
+![alt text](image-39.png)
+
+![alt text](<Screenshot 2024-07-11 104935.png>)
+
+
+## CROSS JOIN
+
+![alt text](image-40.png)
+
+
+## VIEWS
+
+![alt text](image-41.png)
+
+```sql
+ sp_helptext viewname => gives source code 
+```
+
+
+![alt text](image-42.png)
+- if the view is encrypted , we cannot view the source code using sp_helptext.
+- also applicable to procedure 👆
+
+
+```sql
+sp_depends tablename  -- for table 
+sp_depends viewnmae -- for view
+```
+- to check whther any views exist using this table name(when we drop the table  view will cause error when executed)
+
+
+![alt text](image-43.png)
+
+- we can  only insertvalues with address as chennai as we used check constraint.
+
+
+![alt text](image-44.png)
+
+- in schema binding we can use * in select statement and table names must be in two name format - dbo.customers
+
+![alt text](image-45.png)
+
+
+## PROCEDURES
+![alt text](image-46.png)
+
+```sql
+sp_helptext sp_help -- gives the source code of sp_help
+```
+
+##### Befinits of procedures
+1. makes application loosely coupled - changes in database wont effect c# code
+
+- tightly coupled -> when we make changes in th database we have to make changes in c# too
+
+![alt text](image-47.png) 
+
+2. Security mehanism 

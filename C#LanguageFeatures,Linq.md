@@ -307,7 +307,7 @@ public void demo{
    ```cs
    var res = li.Where(t => t.price>500);
    ```
-c
+
  ```cs
     var res = li.Where(t => t.price>500).OrderBy(t => t.price);
     var res = li.Take(3); //top three rows

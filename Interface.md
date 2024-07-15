@@ -6,6 +6,7 @@
 - only declaration
 - in  C# variables not supported in interface
 - implementation is handled using class
+- access specifiers cannot be used
 
 ![alt text](image-19.png)
 
