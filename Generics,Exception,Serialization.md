@@ -37,7 +37,7 @@ l1.Insert(2,43); // to insert dynamically  at position 2
 
 
 l1.Remove(43); // removes a particular element 
-l1.RemoveAll(x=> x==43); // to remove all 43 elements
+l1.RemoveAll(x=> x==43); // to remove all  elements having value 43
 l1.RemoveAt(2); //remove at a index
 l1.RemoveRange(2,5); //Range of index 
 l1.RemoveAll(); //removes all values

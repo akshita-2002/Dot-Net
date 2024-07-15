@@ -137,4 +137,9 @@ sp_helptext sp_help -- gives the source code of sp_help
 
 ![alt text](image-47.png) 
 
-2. Security mehanism 
+2. Security mehanism - can hide table information 
+
+3. Improve Performance - every time we call a procedure the code need not be compiled as it is already compiled
+
+4. reduce network traffic: reduces the number of lines of code 
+
