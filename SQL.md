@@ -143,3 +143,73 @@ sp_helptext sp_help -- gives the source code of sp_help
 
 4. reduce network traffic: reduces the number of lines of code 
 
+
+![alt text](image-48.png)
+
+- whatever the procedure employeeCustomer procedure returns , will be inserted into customer table
+
+![alt text](image-49.png)
+
+- to return more than one value in a procedure we can use output keyword
+
+![alt text](<Screenshot 2024-07-15 103051.png>)
+
+- the values returned by procedure are mapped to variables m and n
+![alt text](image-51.png)
+
+
+### ERROR HANDLING
+
+##### @@error
+
+- @@error => system defined variable
+```sql
+if(@@error=8134) -- 8134 is the error number
+print 'Please do not pass zero as a parameter'
+else
+print @result
+```
+```sql
+-- these all can be used in try catch block
+error_number()
+error_line()
+error_message() 
+```
+
+![alt text](image-52.png)
+
+
+#### FUNCTIONS
+- procedures cannot be part of the query, whereas functions can be part of query
+
+- function are mostly for mathematical operations
+
+- procedure may or may not return a value , function has to return a value 
+
+- use dbo. as prefix to function name as without dbo it will consider as built in function
+
+### TRIGGERS
+
+- associated with table
+- invoke automatically
+- cannot be called directly
+- mostly is part of a transaction
+
+- triggers are reactive ( the record will be validated after insert,if failed it will rollback), cosntraints are proactive (the record will be validated then inserted)
+
+- Constraints are checked first 
+
+```sql
+@@ROWCOUNT -- number of rows effected
+```
+
+![alt text](image-53.png)
+
+
+![alt text](image-54.png)
+
+-  the deleted and inserted tables are stored in ldf files.
+
+-![alt text](image-55.png)
+
+- if rollback not used , it commits by default whether condition is satisfied or not in triggers.
