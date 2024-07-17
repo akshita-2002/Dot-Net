@@ -243,8 +243,8 @@ base.funcname();
 - acheived by method overridden
 - min two classes req
 - inheritance is a must
-- in the base class you need to use virtual(which means the method can be replaced at runtime with base class function)
-- override keyword must be used in derived class
+- in the base class you need to use virtual
+- override keyword must be used in derived class(which means base function can repalce the function at run time)
 
 - base class objects can call derived class functions.
 

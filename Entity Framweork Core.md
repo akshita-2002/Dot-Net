@@ -80,7 +80,7 @@ System.ComponentModel.DataAnnotations
 //class of the table in sql
     public partial class employee
     {
-        [Required(ErrorMessage ="pls enter empid")]
+        [Required(ErrorMessage ="pls enter empid")] //attributes added above property
         public string empid { get; set; }
 
         [Required(ErrorMessage ="pls enter empname")]
@@ -127,3 +127,31 @@ System.ComponentModel.DataAnnotations
         }
 
 ```
+
+- COdding Buddy -> when we add a new table from sql and added to c#, the validations made will be lost, create a new file for storing meta data so that data will not be lost
+
+
+- eager loading -. the primary key table object willload related data
+-  lazy loading - it will not load related data
+- by default it is eager loading
+- to enable lazy loading
+
+![alt text](image-60.png)
+
+
+
+
+
+## TWO APPROACHES TO WORK WITH DATABASE
+
+1. DATABASE FIRST 
+2. CODE FIRST
+
+
+#### Difference : 
+- In database first , database and tables are created first.
+- class/model are generated in C# application
+- replica of table structure
+
+- In code first, Classes/Model are generated first in c# application 
+- Database and tables are generated in backend.
