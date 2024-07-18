@@ -142,16 +142,4 @@ System.ComponentModel.DataAnnotations
 
 
 
-## TWO APPROACHES TO WORK WITH DATABASE
 
-1. DATABASE FIRST 
-2. CODE FIRST
-
-
-#### Difference : 
-- In database first , database and tables are created first.
-- class/model are generated in C# application
-- replica of table structure
-
-- In code first, Classes/Model are generated first in c# application 
-- Database and tables are generated in backend.
