@@ -213,3 +213,18 @@ error_message()
 -![alt text](image-55.png)
 
 - if rollback not used , it commits by default whether condition is satisfied or not in triggers.
+
+
+```sql
+alter trigger tr_insertionprice
+on orders
+for update
+as
+begin 
+if (select price from deleted) < 100
+begin
+print 'Cannot update price less than 100'
+rollback
+end
+end
+```
