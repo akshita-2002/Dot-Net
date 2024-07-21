@@ -1,6 +1,6 @@
 # TRANSACTIONS
 
-- Transactions are a set of one or more database operations that msut be completed as a single unit.
+- Transactions are a set of one or more database operations that must be completed as a single unit.
 
 - it provides integrity and consistency to data.
 
@@ -14,27 +14,28 @@ Eg: if the quantity is reduced by 2 in stock table then it shoud be accounted in
 
 3. Isolation : Concurrent transactions must be isolated from each other. One transaction must not effect the other .
 
-4. Durability : Once a transaction is commited it must persistent even in case of system failure.
+4. Durability : Once a transaction is commited it then the changes made should be permanent even in case of system failure
 
 
 - Transactions are performed using TCL(Transaction Control Languages) Commands : Begin Commit Rollback
 
-- If we start a transaction and doesn't commit it then the transaction will be in loop
-
 ```sql
-Begin TRANSACTION
-Update Actors
-Set FirstName = 'Prabhas fun'
-Where ActorID = 11
+BEGIN TRANSACTION;
+
+-- SQL statements here (e.g., INSERT, UPDATE, DELETE)
+
+-- If everything is successful, commit the transaction
+COMMIT TRANSACTION;
+
+-- If there's an issue, rollback the transaction
+ROLLBACK TRANSACTION;
+
+
 ```
 
-- Until the transaction is not committed we can revert the changes using 
-```sql
-ROLLBACK
-```
 
 
-- Tansactions can also be used in exception handing 
+- Tansactions can also be used in exception handling 
 
 
 - Try and catch
@@ -56,7 +57,7 @@ end
 ```
 
 
-- Transsactions can also be used in triggers
+- Transactions can also be used in triggers
 
 ```sql
 alter trigger tr_insertionprice

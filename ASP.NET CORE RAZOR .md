@@ -176,7 +176,7 @@ var builder = WebApplication.CreateBuilder(args); //to create kester web server
 - Onpost method : to send data from client to server
 
 
-
+# PROGRAM
 
 - The Program.cs file is the program.cs file in console app , to convert to razor project the code s written in program.cs
 
@@ -195,7 +195,8 @@ var builder = WebApllication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // to load the services to kestral web server
-// using app we can define rules for project
+// using app we can define rules for project -> called builtIn middleware
+//the moment url is given url execution starts
 // app is used to use the services
 // the order of execution of services 
 //Eg: app.UseAuthentication();
@@ -210,7 +211,123 @@ app.UseStatusCodePagesWithRedirects("ErrorPage");
 
 // it will redirect to errorpage but the wrong url stays the same 
 app.UseStatusCodePagesWIthReExecute("/ErrorPage");
+
+
+
+//what code should execute in development environment
+// we can change the evironement to testing or production or development in launch.json
+//in ASPNETCORE_ENVIRONMENT : "Development"
+
+
+//run this code if it is not in development environment
+if (!app.Environment.IsDevelopment())
+{
+    //for run time error -> if run time error then go to error page
+    app.UseExceptionHandler("/Error");
+    
+    app.UseHsts();
+}
+
+
+
+
+//will decide whether client side pages can execute or not
+// if UseStaticFiles not used then client pages are not executed
+app.UseStaticFiles()//can use client side pages(stored in wwwRoot)
+
+//whether razor pages can execute ot not (.cshtml)
+app.MapRazorPages();
+
+
+//if server pages are not present --run this cpde
+app.MapGet("/hi",()=>{"Hello World"});
+
+//after app.Run method we cannot give any rules
+app.Run();
+
+
+// for custom middleware
+app.Use(async (context, next) =>
+{
+    await context.Response.WriteAsync("<div> Hello World from the middleware 2 </div>");
+    await next.Invoke();
+    await context.Response.WriteAsync("<div> Returning from the middleware 2 </div>");
+});
+
 ```
 
+- create the objects in program class, so that all other pages can use the objects, to reduce use on memory
 
 
+## DEPENDENCY INJECTION 
+
+- A coding pattern in which a class receives the instances of objects it needs (called dependencies) from an external source rather than creating them itself
+
+
+- Builder
+- to use these we have to use Interface
+![alt text](image-71.png)
+
+```c#
+//separate object is created for every request
+// every time the url is loaded a object is created
+
+builder.Services.AddTransient();
+
+// single object is created for each user
+//no matter how many requests a user makes , the same object is used 
+// for Eg: one user cart is not visible to another user
+builder.Services.AddScoped();
+
+
+// one object is used by all the users
+//Eg: while booking tickets , the blocked seats are  not visible to other users
+builder.Services.AddSingelton();
+builder.Services.AddLogging();
+
+
+```c#
+//anywhere in project where IMyinter interface is used, create a object for MyMathCls
+builder.Services.AddTransient<IMyinter,MyMathCls>();
+
+IMyinter i; //global variable
+public indiaModel(Imyinter obj){//Imyinter obj = new MyMathCls() -> created everytime page is loaded
+     i=obj;
+}
+
+
+
+// single object is created for user
+builder.Services.AddTransient<IMyinter,MyMathCls>();
+
+
+//guid -> generates unique id of 24 digits
+g=Guid.NewGuid(); 
+
+
+//Logging
+public newPageModel(IMyinter obj,ILogger<newPageModel> l)
+{
+    i = obj;
+    //built in interface 
+    l.LogInformation("New Page class accessed by user on :"+DateTime.Now);
+
+}
+builder.Services.AddLogging(
+    c=>{c.AddConsole(); c.AddDebug();c.AddEventLog();} //can be stored in either console,debug window or eventlog
+);
+
+![alt text](image-72.png)
+
+
+//Routing
+//Convention Routing -> written in program.cs 
+// alias names for all files can be written
+builder.Services.AddRazorPages(
+    c=> c.Conventions.AddPageRoute("/newPage","abcde")
+       
+);
+
+//page routing -> write in newPage.cshtml 
+
+@page "/bharath"
