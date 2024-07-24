@@ -37,7 +37,7 @@
 3. bridges gap b/w oop and adatabase programming
 4. ORM(Object Relation Mapping) framework that allows you to easily create and coonect to databse
 
-     - object - refrs to frontend model (replica of table, classes having its own properties) - in C#
+     - object - refers to frontend model (replica of table, classes having its own properties) - in C#
      - Relation - backend structure , always in sql databse
      - Mapping - convertor
 
@@ -136,7 +136,7 @@ System.ComponentModel.DataAnnotations
 - by default it is eager loading
 - to enable lazy loading
 
-![alt text](image-60.png)
+![alt text](image-60.png) 
 
 
 

@@ -178,7 +178,7 @@ var builder = WebApplication.CreateBuilder(args); //to create kester web server
 
 # PROGRAM
 
-- The Program.cs file is the program.cs file in console app , to convert to razor project the code s written in program.cs
+- The Program.cs file is the program.cs file in console app , to convert to razor project the code is written in program.cs
 
 
 ```c#
@@ -189,7 +189,7 @@ var builder = WebApplication.CreateBuilder(args); //to create kester web server
 // will return an object(webapplication builder)
 
 //using this return type , we can configure add a services , dependency injection and middleware
-var builder = WebApllication.CreateBuilder(args);
+var builder = WebAplication.CreateBuilder(args);
 
 //to convert to razor project 
 builder.Services.AddRazorPages();
@@ -261,7 +261,7 @@ app.Use(async (context, next) =>
 
 ## DEPENDENCY INJECTION 
 
-- A coding pattern in which a class receives the instances of objects it needs (called dependencies) from an external source rather than creating them itself
+- A coding pattern in which a class receives the instances of objects it needs (called dependencies) from an external source rather than creating them itself.
 
 
 - Builder

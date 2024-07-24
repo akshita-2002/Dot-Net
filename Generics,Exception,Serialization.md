@@ -157,7 +157,7 @@ Queue<string> s = new Queue<string>();
 s.Enqueue("Akshita"); //push
 s.Enqueue("Riya");
 Console.WriteLine(s.Count);
-COnsole.WriteLine(s.Peek()); // varun
+COnsole.WriteLine(s.Peek()); // Akshita
 Console.WriteLine(s.Dequeue());
 
 foreach(item in s){
