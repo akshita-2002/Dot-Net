@@ -291,3 +291,119 @@ Eg: [Required(ErrorMesssage="")] -> mandatarory field
 
     [CheckDOB(ErrorMessage ="")] //validation
 ```
+
+
+### PARTIAL VIEW
+
+- also called as reusable views
+- in partial view we can create a UI and reuse across multiple pages
+- are created using partialviewresult return type instead of actionresult.
+
+- partial view is merged with complete view
+
+- suppose we want to use code written in partial view of test Partial
+
+![alt text](image-82.png)
+
+
+
+
+
+### ACTION FILTERS
+
+- a set of logic which is applied before or after calling action methods
+
+- we can execute certain logic before the method starts executes 
+
+- Types
+
+1. Outputcache
+2. Exception
+3. Authentication 
+
+
+#### What is outputcache : 
+1. all action filters comes in form of attributes. 
+2. Allows to store frequently accessed data in cache memory in order to increase application performance .  
+3. Using output cache the page guarantees to run faster
+4. apply for methods that are large
+
+
+- date will be stored in cache for 10 s after that method will be executed again and the value will be stored in cache.
+![alt text](image-83.png)
+
+- to use this add in program.cs
+```c#
+builder.Services.AddOutputCache();
+app.UseOutputCache();
+```
+
+
+#### What is Exception :
+1. using exception filter we can display custom view page when run time error is encountered
+
+to add exception to entire project, in Program.cs
+
+```c#
+builder.Services.AddControllersWithViews(c=>c.Filters.Add(new CustomExceptionFilterAttribute()));
+```
+
+- to apply for a particular method
+
+```c#
+public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
+    {
+        public override void OnException(ExceptionContext context)
+        {                     
+            context.Result = new ViewResult { ViewName = "Error" };
+            context.ExceptionHandled = true;
+        }
+    }
+```
+
+Now apply the class name as attribute on top of method, if you want for entire class place the attribute on top of class.
+
+- to use exception we need to first create a class which inherits ExceptionFIlterAttribute and override the onexception method 
+
+- in onexception you need to specify the viewname and ExceptionHandled property 
+
+
+#### What is Authentication
+
+- .Net supports many kind of authentication 
+
+1. Cookie based authentication : we use collection of claims and identities to handle this. We also use cookie file(text file) in this type
+
+2. JWT authentication : json web token . THis type of authentication is very widely used in web API.
+
+3. OAuth authentication : in this type of authentication ,we use external website to get user information, instead of managing users manually. Eg: we use sign in by google account in other websites.
+
+
+
+###### COOKIE BASED AUTHENTICATION 
+
+1. claims
+2. claim identity
+3. claim principle
+
+- claims are information regarding particular object or person 
+- claims always come in the form of key value based
+Eg:
+varun => identity
+age:21  --claims
+address:hyd --claims
+phone:234543423  --claims
+
+- claim identity is collection of one or more claims 
+
+Eg: votercard(claim identity)
+    claims
+    1. voterid : 23435
+    2. name : akshita
+    3. dob : 220202
+    4. address : hyd
+
+- claim principle is collection of one or more identities
+
+
+
