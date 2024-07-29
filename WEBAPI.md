@@ -171,3 +171,74 @@ http://localhost/api/simple/getID------------>server
 
 - we can rent hardware, software,os,services,VM,.....
 
+
+
+# JAVASCRIPT
+
+- calling webapi using javascript
+- using class xmhhttprequest class
+- whether the web api return xml or json it doesnt matter
+
+
+## Synchronous and asynchronous
+- synchronous->sequential 
+- asunchornous -> parallel
+![alt text](image-89.png)
+
+- this is synchronous as it will be executed in a sequential order, method2 will only be called if method1 is executed successfully 
+
+![alt text](image-91.png)
+- in asynchronous -> the second method will run simultaneously , while method 1 is running
+
+-  to make any method asynchronous use class Task and write the logic inside the task.run
+
+
+
+```js
+
+    <script>
+
+
+        var xhr = new XMLHttpRequest();  //to interact with web api
+        xhr.open("GET", "https://api.restful-api.dev/objects", true);//open generates a new connection with a method , true -> asynchonousy(parallel) or synchonously(sequential)
+        xhr.onload = function (e)/*anonymous function*/ { //as soon as the page is executed the javascript code will be executed using onload
+            // e object holds the result of what the function returns and inturn returns to xhr object
+            if (xhr.readyState === 4) {  //property -> takes value from 1-4
+                //1-> method not yet called
+                //2->method is executing
+                //3-> exected but output not ready
+                //4-> output ready
+
+                if (xhr.status === 200) {//200 represents if successfully executes
+                    console.log(e);
+                    document.getElementById("d1").innerText = xhr.responseText; //to print the result in browser
+                    var res = JSON.parse(xhr.responseText); //converts json to javascript array
+                    res.forEach(function (key) {
+                        document.getElementById("l").innerHTML += "<li>" + key.name + "</li>";
+                    });
+
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = function (e) {
+            console.error(xhr.statusText);
+        };
+        xhr.send(null);
+
+    </script>
+
+    <div id="d1"></div>
+    <ul id="l">
+
+    </ul>
+```
+
+
+- using IActionResult we can manage the status code 
+![alt text](image-90.png)
+Ok -> status code 200
+notfound -> status code 404
+
+![alt text](image-92.png)
