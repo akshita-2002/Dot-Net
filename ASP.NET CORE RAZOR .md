@@ -124,7 +124,7 @@ var builder = WebApplication.CreateBuilder(args); //to create kester web server
 - to call methods of diffrent class we use @Model
 
 
-- to take input from user to calcualte two numbers
+- to take input from user to calculate two numbers
 
 ```c#
 //in cs page

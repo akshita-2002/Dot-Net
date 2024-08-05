@@ -83,7 +83,7 @@ how to create container -> always  created from images
 
 - docker desktop contains all the images and containers stored locally
 
-- docker daemon -> like dserver where the images are stored
+- docker daemon -> like server where the images are stored
 
 
 ## STEPS TO CREATE IMAGE AND CONTAINER
@@ -193,9 +193,9 @@ docker run -d -p 8090:8080 --name container1  akhila0307/empolyee
 
 - additional container would require to adjust number of users
 
-- if users decrease we need to decrease the conatienrs to save resources
+- if users decrease we need to decrease the containers to save resources
 
-- writing commands would be difficult to maange 100's of containers
+- writing commands would be difficult to manage 100's of containers
 
 - kurbernetes is used to make these things automatically
 
@@ -204,7 +204,7 @@ docker run -d -p 8090:8080 --name container1  akhila0307/empolyee
 
 ## ADVANTAGES
 
-1. COntainer orchestration -> how many containers are running , when container was created , since how long anf port number
+1. Container orchestration -> how many containers are running , when container was created , since how long anf port number
 2. Auto Scaling
 3. Self healing ( if one container crashes then new container is created)
 4. Load balancing ( uses all containers without keeping any container ideal)
@@ -273,7 +273,7 @@ minikube start
 ```
 
 
-- to scale the replicas (the name of the deploment is the deployment.yaml file)
+- to scale the replicas (the name of the deploment is in  deployment.yaml file)
 
 ```c#
 kubectl scale deploy mywebapi-deployment  --replicas=5         
