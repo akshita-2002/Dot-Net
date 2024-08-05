@@ -400,3 +400,104 @@ builder.Services.AddCors(options =>
  });
 
  </script>
+```
+
+
+
+
+
+
+
+ # UNIT TESTING
+
+ - testing individual methods
+
+ - Bunit is a unit testing framework for blazor 
+
+ - for blazor projects only
+
+ - only for c# and razor code(html)
+
+
+ ## Steps
+
+ 1. Create  a new xUnit test project
+ 2. install bunit package
+ 3. add reference of project to be tested(right click on the testing project and add project reference to call the functions)
+
+
+ ![alt text](image-127.png)
+
+ - RenderComponent -> to call the specific component
+ - now cut will have reference to the component
+ - cut.Instance will create a object of the component 
+ - now we can call the method 
+ - now match the expected value with the value returned using class Assert
+
+
+
+
+ - we can also perform testing on html tags
+ ![alt text](image-128.png)
+
+ -var paragraph= cut.Find("p") => find is used for searching html elements 
+ - paragraph variable has all the information of p tag
+ - paragraph.TextContent -> gives the content of the paragraph tag
+
+
+
+ - we can also perform tests by ID -> b1 is the ID of button 
+ ![alt text](image-129.png)
+
+
+
+ # AUTHENTICATION
+
+ - blazor webassembly -> framework for building web applications. For  client side 
+
+ - authentication : process of verifying the identity of a user
+
+ - Authorization : determines what authenticated users are allowed to do
+
+ - default type of authentication -> anonymous (anyone can access)
+
+ - Classes & Components in Blazor Authentication
+
+ 1. AuthenticationStateProvider : base class that provides authentication state information to the blazor components . This class contains methods by name NotifyAuthenticationStateChanged which is used to notify application whether the user is authenticated or not.(to inform other pages whether the user is logged in or not)
+
+
+ 2. AuthenticationState : represents the authentication state of user , whther the user has permission to access the page or not. Has a method isAuthenticate .
+
+ 3. ClaimsPrincipal : represents the user in terms of their identity and claims
+
+
+ 4. AuthorizeView : conditionally displays UI content based on the users authentication state. Has teo blocks authorized and NotAuthorized
+
+ ![alt text](image-130.png) 
+
+
+- we have to inherit a base class AuthenticationStateProvider
+![alt text](image-131.png)
+
+- GetAuthenticationStateAsync -> inbuilt method (defualt behavior of the application that is anonymous)
+
+- anoymous object is of type class claimprinicple
+
+-  when we logout , it returns to anonymous
+
+
+
+- program.cs 
+![alt text](image-132.png) 
+MockAuthenticationStateProvider -=> for custom authentication
+
+![alt text](image-133.png)
+- the user is authenticated and notified to other pages by calling the method MarkAsUserLoggedIn 
+
+
+- App.razor  => cascadingAuthentication (apply fro child pages also)
+
+![alt text](image-134.png)
+
+
+
