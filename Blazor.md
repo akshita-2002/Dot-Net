@@ -501,3 +501,153 @@ MockAuthenticationStateProvider -=> for custom authentication
 
 
 
+# CONFIGURATION
+
+
+- To log
+
+
+
+```c#
+    ILogger<onlinemoviesdbContext> _logger;
+
+    public CinemaController(ILogger<onlinemoviesdbContext> l)
+   {
+    
+    _logger = l;
+    cache= m;
+   }
+
+
+   public IActionResult ShowMovies()
+   {
+       //to log who accessed the get method
+      _logger.LogInformation("New Get Method is Accessed from client on" + DateTime.Now.ToString());
+
+   }
+
+
+
+
+```
+
+
+
+- We can write the database path in appsettings.json , so that if the path of database is changed in future it shouldnt effect 
+
+```c#
+//comment the path in contextdb class
+//appsettings.json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+
+  "ConnectionStrings": { "moviesdb": "TrustServerCertificate=true;Data Source=AKSHITA-GTEHYD\\SQLEXPRESS;Initial Catalog=onlinemoviesdb;Integrated Security=True;Encrypt=True" },
+  "AllowedHosts": "*"
+}
+
+
+//program.cs
+
+//the path will change when we will change the path in appsettings.json
+var configuration = builder.Configuration; //you are reding the content of appsettings.json
+
+var a = builder.Configuration.GetConnectionString("moviesdb"); //read value of moviesdb
+
+builder.Services.AddDbContext<onlinemoviesdbContext>(o => o.UseSqlServer(a)); //path is attached to sql server
+
+
+
+//cinema controller
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CinemaController : ControllerBase
+    {
+
+        onlinemoviesdbContext dc;
+ 
+        public CinemaController(onlinemoviesdbContext dcobj)
+        {
+             dc = dcobj;
+        }
+
+        public void showMovies(){
+            var res = (from t in dc.Movies
+           select t).ToList();
+        }
+
+    }
+
+```
+
+
+
+
+
+
+- Memory Configuration : to store data in cache so that it takes less time to retrieve memory 
+
+
+
+1. 
+     - to assign a certain value to key 
+       ```c#
+       private readonly IMemoryCache cache;   
+
+
+
+       
+        [Route("sh")]
+        [HttpGet]
+        public IActionResult ShowMo()
+        {
+            //to store in the cache memory
+            cache.Set("name", "raj");
+            //to read from the cache memory
+            string st = cache.Get("name").ToString();
+            return Ok(st);
+        }
+
+
+      ```  
+
+2. to store the data of movies in cache so that whenever get method is called the data can be retrieved from cache
+
+```c#
+public IActionResult ShowMovies()
+{
+
+    
+    var cacheKey = "mov";
+    _logger.LogInformation("New Get Method is Accessed from client on" + DateTime.Now.ToString());
+    //it will check if the key (mov) is there in cache if not it is retrieved from database and stored in cache 
+    //trygetvalue -> if the key is not there then error wont occur 
+    if (cache.TryGetValue(cacheKey, out List<Movie>? data))
+    {
+
+
+        return Ok(data);
+
+    }
+    else
+    {
+        var res = (from t in dc.Movies
+                   select t).ToList();
+        var cacheOptions = new MemoryCacheEntryOptions()
+           .SetAbsoluteExpiration(TimeSpan.FromSeconds(300));//the cahce expires after 300s
+        // .SetPriority(CacheItemPriority.NeverRemove)//to keep the data permanently 
+        // .SetSize(2048);//to allocate memory 
+
+        cache.Set(cacheKey, res, cacheOptions); // if not there in cache then the data in res is stored in cachekey key now
+
+        return Ok(res);
+    }
+}
+```
+
+
