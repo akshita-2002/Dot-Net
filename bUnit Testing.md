@@ -1,4 +1,5 @@
 - bUnit is used for UI testing
+- bUnit is used for testing blazor project
 
 - Fact attribute
 [Fact]
